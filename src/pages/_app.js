@@ -14,8 +14,8 @@ import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 
 // components
-import Header from './components/Header'
-import Search from './components/Search'
+import Header from '../components/Header'
+import Search from '../components/Search'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
