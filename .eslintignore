@@ -1,0 +1,7 @@
+public/js/jquery
+public/js/bootstrap
+api/
+keystone.js
+next.config.js
+updates/*
+src/.next
