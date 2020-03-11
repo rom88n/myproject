@@ -72,7 +72,7 @@ export default class _App extends App {
         <div className={classNames('container', classes.container)}>
           <Paper className={classes.root} elevation={18}>
             <Header/>
-            <Search/>
+            <Search />
             <Component router={router} {...pageProps} />
           </Paper>
         </div>
