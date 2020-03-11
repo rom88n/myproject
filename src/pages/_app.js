@@ -3,6 +3,7 @@ import React from 'react'
 import App from 'next/app'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 // redux
 import withRedux from 'next-redux-wrapper'
@@ -21,7 +22,16 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 const styles = {
   root: {
-    marginTop: '2rem'
+    marginTop: '2rem',
+    '@media screen and (max-width: 500px)': {
+      marginTop: '.1rem',
+    }
+  },
+  container: {
+    '@media screen and (max-width: 500px)': {
+      paddingRight: 0,
+      paddingLeft: 0,
+    }
   }
 }
 @withRedux(configureStore)
@@ -59,10 +69,10 @@ export default class _App extends App {
     return (
       <Provider store={store}>
         <Head>123</Head>
-        <div className="container">
+        <div className={classNames('container', classes.container)}>
           <Paper className={classes.root} elevation={18}>
             <Header/>
-            <Search />
+            <Search/>
             <Component router={router} {...pageProps} />
           </Paper>
         </div>
