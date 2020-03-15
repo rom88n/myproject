@@ -13,6 +13,9 @@ import DateRange from '@material-ui/icons/dateRange'
 import RemoveRedEye from '@material-ui/icons/removeRedEye'
 import HD from '@material-ui/icons/hd'
 
+// components
+import Link from '../../components/Link'
+
 const useStyles = makeStyles({
   container: {
     display: 'flex',
@@ -94,6 +97,8 @@ export default function MediaCard({ item }) {
             classes={{ root: classes.img }}
             image="https://1k.com.ua/wp-content/uploads/img5b011c5/14-02-20/1581707908_8794.jpg"
             title="Item Video"
+            component={Link}
+            href="/watch/123"
           >
             <div className={classes.viewContainer}>
               <RemoveRedEye className={classes.iconEye}/>

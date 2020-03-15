@@ -19,7 +19,7 @@ const styles = {
   player: {
     padding: '1rem',
     width: '100%',
-    height: 'auto',
+    height: 'auto'
   },
   related: {
     margin: '1rem',
@@ -32,15 +32,15 @@ const styles = {
 @withStyles(styles)
 export default class Watch extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired
     // router: PropTypes.object.isRequired
   }
 
-  static async getInitialProps() {
-    // const res = await fetch('https://api.github.com/repos/zeit/next.js')
-    // const json = await res.json()
-    // return { stars: json.stargazers_count }
-  }
+  // static async getInitialProps() {
+  // const res = await fetch('https://api.github.com/repos/zeit/next.js')
+  // const json = await res.json()
+  // return { stars: json.stargazers_count }
+  // }
 
   render() {
     const { classes } = this.props
