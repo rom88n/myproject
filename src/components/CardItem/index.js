@@ -24,12 +24,17 @@ const useStyles = makeStyles({
   root: {
     width: '100%',
     maxWidth: 345,
-    margin: '1rem 0',
+    margin: '1rem 0'
   },
   img: {
     width: '100%',
     height: 300,
     position: 'relative'
+  },
+  disableFocus: {
+    '&:focus': {
+      outline: 'none'
+    }
   },
   description: {
     whiteSpace: 'nowrap',
@@ -91,8 +96,8 @@ export default function MediaCard({ item }) {
 
   return (
     <div className={classes.container}>
-      <Card className={classes.root}>
-        <CardActionArea>
+      <Card className={classes.root} square>
+        <CardActionArea className={classes.disableFocus}>
           <CardMedia
             classes={{ root: classes.img }}
             image="https://1k.com.ua/wp-content/uploads/img5b011c5/14-02-20/1581707908_8794.jpg"
