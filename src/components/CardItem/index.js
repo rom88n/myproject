@@ -14,7 +14,12 @@ import RemoveRedEye from '@material-ui/icons/removeRedEye'
 import HD from '@material-ui/icons/hd'
 
 const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
   root: {
+    width: '100%',
     maxWidth: 345,
     margin: '1rem 0',
   },
@@ -82,30 +87,32 @@ export default function MediaCard({ item }) {
   const classes = useStyles()
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          classes={{ root: classes.img }}
-          image="https://1k.com.ua/wp-content/uploads/img5b011c5/14-02-20/1581707908_8794.jpg"
-          title="Item Video"
-        >
-          <div className={classes.viewContainer}>
-            <RemoveRedEye className={classes.iconEye}/>
-            <Typography component="div" variant="caption">777</Typography>
-          </div>
-          <HD className={classes.iconHD}/>
-        </CardMedia>
-      </CardActionArea>
-      <CardContent>
-        <Typography variant="h6" className={classes.description}>
-          Name Video{item}
-        </Typography>
-      </CardContent>
-      <div className={classes.dateContainer}>
-        <div><DateRange className={classes.viewIcon}/></div>
-        <Typography component="div" variant="caption" className={classes.postDate}>2020-02-02</Typography>
-      </div>
-    </Card>
+    <div className={classes.container}>
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardMedia
+            classes={{ root: classes.img }}
+            image="https://1k.com.ua/wp-content/uploads/img5b011c5/14-02-20/1581707908_8794.jpg"
+            title="Item Video"
+          >
+            <div className={classes.viewContainer}>
+              <RemoveRedEye className={classes.iconEye}/>
+              <Typography component="div" variant="caption">777</Typography>
+            </div>
+            <HD className={classes.iconHD}/>
+          </CardMedia>
+        </CardActionArea>
+        <CardContent>
+          <Typography variant="h6" className={classes.description}>
+            Name Video{item}
+          </Typography>
+        </CardContent>
+        <div className={classes.dateContainer}>
+          <div><DateRange className={classes.viewIcon}/></div>
+          <Typography component="div" variant="caption" className={classes.postDate}>2020-02-02</Typography>
+        </div>
+      </Card>
+    </div>
   )
 }
 
