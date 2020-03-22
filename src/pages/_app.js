@@ -20,9 +20,6 @@ import Paper from '@material-ui/core/Paper'
 import Header from '../components/Header'
 import Search from '../components/Search'
 
-import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
-
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const client = new ApolloClient({
@@ -84,29 +81,6 @@ export default class _App extends App {
           <div className={classNames('container', classes.container)}>
             <Paper className={classes.root} elevation={18}>
               <Header/>
-              <Query
-                query={gql`
-      query {
-        allPosts {
-          name
-        }
-      }
-    `}
-              >
-                {({ loading, error, data }) => {
-                  console.log('data', data)
-                  if (loading) return <p>Loading...</p>
-                  if (error) return <p>Error :(</p>
-
-                  return (
-                    <ul key="allPosts">
-                      {data.allPosts.map(({ name }) => (
-                        <li key={name}>{name || 'incognoito'}</li>
-                      ))}
-                    </ul>
-                  )
-                }}
-              </Query>
               <Search/>
               <Component router={router} {...pageProps} />
             </Paper>
