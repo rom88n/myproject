@@ -2,14 +2,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'next/router'
-import _ from 'lodash'
 
 // material-ui
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
 // components
-import CardItem from '../../components/CardItem'
+import VideoContainer from '../../components/VideoContainer'
 
 const styles = {
   root: {},
@@ -20,11 +19,6 @@ const styles = {
     padding: '1rem',
     width: '100%',
     height: 'auto'
-  },
-  related: {
-    margin: '1rem',
-    display: 'flex',
-    justifyContent: 'center'
   }
 }
 
@@ -55,16 +49,7 @@ export default class Watch extends React.Component {
           <div className="col-sm-12 col-md-4 col-lg-4"/>
         </div>
         <Typography variant="h6" className={classes.title}>Похожие видео</Typography>
-        <div className={classes.related}>
-          <div className="row">
-            {_.range(0, 12)
-              .map((item, index) => (
-                <div className="col-sm-12 col-md-6 col-lg-3" key={index}>
-                  <CardItem item={item}/>
-                </div>)
-              )}
-          </div>
-        </div>
+        <VideoContainer/>
       </div>
     )
   }

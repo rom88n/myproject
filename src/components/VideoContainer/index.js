@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   }
 })
 
-export default function MediaCard() {
+export default function VideoContainer() {
   const classes = useStyles()
   return (
     <div className={classNames(classes.container, 'row')}>

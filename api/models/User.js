@@ -1,28 +1,38 @@
-const keystone = require('keystone');
-const Types = keystone.Field.Types;
+const { Password, Checkbox, Text } = require('@keystonejs/fields')
 
-/**
- * User Model
- * ==========
- */
-const User = new keystone.List('User');
+const userIsAdmin = ({ authentication: { item: user } }) => Boolean(user && user.isAdmin)
+const userOwnsItem = ({ authentication: { item: user } }) => {
+  if (!user) {
+    return false
+  }
+  return { id: user.id }
+}
+const userIsAdminOrOwner = auth => {
+  const isAdmin = access.userIsAdmin(auth)
+  const isOwner = access.userOwnsItem(auth)
+  return isAdmin ? isAdmin : isOwner
+}
+const access = { userIsAdmin, userOwnsItem, userIsAdminOrOwner }
 
-User.add({
-	name: { type: Types.Name, required: true, index: true },
-	email: { type: Types.Email, initial: true, required: true, unique: true, index: true },
-	password: { type: Types.Password, initial: true, required: true },
-}, 'Permissions', {
-	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
-});
+const User = {
+  fields: {
+    name: { type: Text },
+    email: {
+      type: Text,
+      isUnique: true
+    },
+    isAdmin: { type: Checkbox },
+    password: {
+      type: Password
+    }
+  },
+  access: {
+    read: access.userIsAdminOrOwner,
+    update: access.userIsAdminOrOwner,
+    create: access.userIsAdmin,
+    delete: access.userIsAdmin,
+    auth: true
+  }
+}
 
-// Provide access to Keystone
-User.schema.virtual('canAccessKeystone').get(function () {
-	return this.isAdmin;
-});
-
-
-/**
- * Registration
- */
-User.defaultColumns = 'name, email, isAdmin';
-User.register();
+module.exports = User

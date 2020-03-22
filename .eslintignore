@@ -5,3 +5,5 @@ keystone.js
 next.config.js
 updates/*
 src/.next
+index.js
+initial-data.js
