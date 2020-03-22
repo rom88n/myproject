@@ -23,12 +23,12 @@ const useStyles = makeStyles({
   },
   root: {
     width: '100%',
-    maxWidth: 345,
+    maxWidth: '345px',
     margin: '1rem 0'
   },
   img: {
     width: '100%',
-    height: 300,
+    height: '200px',
     position: 'relative'
   },
   disableFocus: {
@@ -100,7 +100,7 @@ export default function MediaCard({ item }) {
         <CardActionArea className={classes.disableFocus}>
           <CardMedia
             classes={{ root: classes.img }}
-            image="https://1k.com.ua/wp-content/uploads/img5b011c5/14-02-20/1581707908_8794.jpg"
+            image="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"
             title="Item Video"
             component={Link}
             href="/watch/123"
@@ -114,7 +114,7 @@ export default function MediaCard({ item }) {
         </CardActionArea>
         <CardContent>
           <Typography variant="h6" className={classes.description}>
-            Name Video{item}
+            Name Video{item.name}
           </Typography>
         </CardContent>
         <div className={classes.dateContainer}>
@@ -127,6 +127,6 @@ export default function MediaCard({ item }) {
 }
 
 MediaCard.propTypes = {
-  item: PropTypes.number.isRequired
+  item: PropTypes.object.isRequired
 }
 
