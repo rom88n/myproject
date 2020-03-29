@@ -1,28 +1,39 @@
 // base
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useRouter } from 'next/router'
 
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import List from '@material-ui/core/List'
-import Hidden from '@material-ui/core/Hidden'
 import Popper from '@material-ui/core/Popper'
 import Fade from '@material-ui/core/Fade'
 import Paper from '@material-ui/core/Paper'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
+// components
+import Link from '../Link'
+
 const useStyles = makeStyles({
   list: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    '@media only screen and (max-width: 769px)': {
+      display: 'none'
+    }
   },
   dropdownList: {
     padding: '.5rem',
     overflow: 'auto',
     height: '300px'
+  },
+  listItem: {
+    color: 'inherit',
+    '&:hover': {
+      color: 'inherit',
+      textDecoration: 'none'
+    }
   }
 })
 
@@ -55,7 +66,10 @@ function ListItemDropDown({ item, classes }) {
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       <div>
-        <ListItem onClick={handleClickDropDown} button>
+        <ListItem
+          onClick={handleClickDropDown}
+          button
+        >
           <ListItemText
             primary={item.title}
           />
@@ -65,10 +79,15 @@ function ListItemDropDown({ item, classes }) {
             <Fade {...TransitionProps} timeout={350}>
               <Paper className={classes.dropdownList}>
                 <List disablePadding dense>
-                  {item.items.map(item => (
-                    <ListItem key={item.title} button>
+                  {item.items.map(child => (
+                    <ListItem
+                      key={child.title}
+                      component={Link}
+                      href={`/${child.href}`}
+                      button
+                    >
                       <ListItemText
-                        primary={item.title}
+                        primary={child.title}
                       />
                     </ListItem>)
                   )}
@@ -89,26 +108,25 @@ ListItemDropDown.propTypes = {
 
 export default function DesktopMenu({ data }) {
   const classes = useStyles()
-  const router = useRouter()
-
-  const handleRoute = (str) => () => {
-    router.push(`/${str}`)
-  }
 
   return (
-    <Hidden smDown>
-      <List classes={{ root: classes.list }} dense>
-        {data.map((item) => {
-          if (item.items) return (<ListItemDropDown classes={classes} item={item} key={item.title}/>)
-          return (
-            <ListItem key={item.title} onClick={handleRoute('')} button>
-              <ListItemText
-                primary={item.title}
-              />
-            </ListItem>)
-        })}
-      </List>
-    </Hidden>
+    <List classes={{ root: classes.list }} dense>
+      {data.map((item) => {
+        if (item.items) return (<ListItemDropDown classes={classes} item={item} key={item.title}/>)
+        return (
+          <ListItem
+            key={item.title}
+            component={Link}
+            href={`/${item.href}`}
+            className={classes.listItem}
+            button
+          >
+            <ListItemText
+              primary={item.title}
+            />
+          </ListItem>)
+      })}
+    </List>
   )
 }
 

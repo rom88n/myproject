@@ -4,8 +4,6 @@ import App from 'next/app'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import ApolloClient from 'apollo-boost'
-import { ApolloProvider } from 'react-apollo'
 
 // redux
 import withRedux from 'next-redux-wrapper'
@@ -21,15 +19,15 @@ import Header from '../components/Header'
 import Search from '../components/Search'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-
-const client = new ApolloClient({
-  uri: 'http://localhost:3000/admin/api'
-})
-
+import 'video-react/dist/video-react.css'
 
 const styles = {
+  '@global': {
+    body: {
+      background: '#000000d9',
+    }
+  },
   root: {
-    marginTop: '2rem',
     '@media screen and (max-width: 500px)': {
       marginTop: '.1rem'
     }
@@ -39,6 +37,9 @@ const styles = {
       paddingRight: 0,
       paddingLeft: 0
     }
+  },
+  background: {
+    padding: '2rem 0',
   }
 }
 
@@ -75,9 +76,9 @@ export default class _App extends App {
     const { Component, pageProps, router, classes, store } = this.props
 
     return (
-      <ApolloProvider client={client}>
-        <Provider store={store}>
-          <Head>123</Head>
+      <Provider store={store}>
+        <Head>123</Head>
+        <div className={classes.background}>
           <div className={classNames('container', classes.container)}>
             <Paper className={classes.root} elevation={18}>
               <Header/>
@@ -85,8 +86,8 @@ export default class _App extends App {
               <Component router={router} {...pageProps} />
             </Paper>
           </div>
-        </Provider>
-      </ApolloProvider>
+        </div>
+      </Provider>
     )
   }
 }

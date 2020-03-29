@@ -30,6 +30,7 @@ const keystone = new Keystone({
 
 keystone.createList('User', require('./api/models/User'))
 keystone.createList('Post', require('./api/models/Post'))
+keystone.createList('Category', require('./api/models/Category'))
 
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,

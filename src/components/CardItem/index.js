@@ -9,12 +9,12 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
-import DateRange from '@material-ui/icons/dateRange'
+import DateRange from '@material-ui/icons/DateRange'
 import RemoveRedEye from '@material-ui/icons/removeRedEye'
 import HD from '@material-ui/icons/hd'
 
 // components
-import Link from '../../components/Link'
+import Link from '../Link'
 
 const useStyles = makeStyles({
   container: {
@@ -100,10 +100,10 @@ export default function MediaCard({ item }) {
         <CardActionArea className={classes.disableFocus}>
           <CardMedia
             classes={{ root: classes.img }}
-            image="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"
-            title="Item Video"
+            image={item.image}
+            title={item.title}
             component={Link}
-            href="/watch/123"
+            href={`/watch/${item.id}`}
           >
             <div className={classes.viewContainer}>
               <RemoveRedEye className={classes.iconEye}/>
@@ -113,8 +113,8 @@ export default function MediaCard({ item }) {
           </CardMedia>
         </CardActionArea>
         <CardContent>
-          <Typography variant="h6" className={classes.description}>
-            Name Video{item.name}
+          <Typography variant="subtitle1" className={classes.description}>
+            {item.title}
           </Typography>
         </CardContent>
         <div className={classes.dateContainer}>
