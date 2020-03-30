@@ -10,6 +10,7 @@ import CardItem from '../CardItem/index'
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
 import Skeleton from '@material-ui/lab/Skeleton'
+import Pagination from '@material-ui/lab/Pagination'
 
 const useStyles = makeStyles({
   container: {
@@ -29,6 +30,10 @@ const useStyles = makeStyles({
 
 export default function VideoContainer({ data }) {
   const classes = useStyles()
+  const [page, setPage] = React.useState(1);
+  const handleChange = (event, value) => {
+    setPage(value)
+  };
 
   if (!data.length) {
     return (
@@ -51,6 +56,7 @@ export default function VideoContainer({ data }) {
           <CardItem item={item}/>
         </div>
       ))}
+      <Pagination count={10} page={page} onChange={handleChange} />
     </div>
   )
 }

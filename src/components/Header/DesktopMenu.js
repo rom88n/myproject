@@ -11,6 +11,7 @@ import Popper from '@material-ui/core/Popper'
 import Fade from '@material-ui/core/Fade'
 import Paper from '@material-ui/core/Paper'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
+import Hidden from '@material-ui/core/Hidden'
 
 // components
 import Link from '../Link'
@@ -110,23 +111,19 @@ export default function DesktopMenu({ data }) {
   const classes = useStyles()
 
   return (
-    <List classes={{ root: classes.list }} dense>
-      {data.map((item) => {
-        if (item.items) return (<ListItemDropDown classes={classes} item={item} key={item.title}/>)
-        return (
-          <ListItem
-            key={item.title}
-            component={Link}
-            href={`/${item.href}`}
-            className={classes.listItem}
-            button
-          >
-            <ListItemText
-              primary={item.title}
-            />
-          </ListItem>)
-      })}
-    </List>
+    <Hidden smDown>
+      <List classes={{ root: classes.list }} dense>
+        {data.map((item) => {
+          if (item.items) return (<ListItemDropDown classes={classes} item={item} key={item.title}/>)
+          return (
+            <ListItem key={item.title} component={Link} href={`${item.href}`} button>
+              <ListItemText
+                primary={item.title}
+              />
+            </ListItem>)
+        })}
+      </List>
+    </Hidden>
   )
 }
 
