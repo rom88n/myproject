@@ -10,7 +10,6 @@ import CloseIcon from '@material-ui/icons/Close'
 import HomeIcon from '@material-ui/icons/Home'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
-import Hidden from '@material-ui/core/Hidden'
 import Drawer from '@material-ui/core/Drawer'
 import Divider from '@material-ui/core/Divider'
 import Typography from '@material-ui/core/Typography'
@@ -21,6 +20,11 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Collapse from '@material-ui/core/Collapse'
 
 const useStyles = makeStyles({
+  root: {
+    '@media only screen and (min-width: 770px)': {
+      display: 'none'
+    }
+  },
   drawer: {
     width: '100%'
   },
@@ -78,7 +82,7 @@ export default function MobileDrawer(props) {
   const { data } = props
 
   return (
-    <Hidden mdUp>
+    <div className={classes.root}>
       <IconButton className={classes.button} onClick={() => setOpen(true)}>
         <MenuIcon/>
       </IconButton>
@@ -106,7 +110,7 @@ export default function MobileDrawer(props) {
           })}
         </List>
       </Drawer>
-    </Hidden>
+    </div>
   )
 }
 

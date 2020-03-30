@@ -10,7 +10,6 @@ import MobileDrawer from './MobileDrawer'
 
 const useStyles = makeStyles({
   root: {
-    // border: '1px solid #00000030',
     height: '50px',
     display: 'flex',
     justifyContent: 'space-between',

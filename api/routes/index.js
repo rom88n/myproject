@@ -1,5 +1,3 @@
-const keystone = require('keystone')
-
 // Setup Route Bindings
 // eslint-disable-next-line no-multi-assign
 exports = module.exports = nextApp => keystoneApp => {
