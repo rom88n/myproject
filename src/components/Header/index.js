@@ -26,23 +26,11 @@ export default function Header() {
   const menuItems = [
     {
       title: 'Главная',
-      href: ''
+      href: '/'
     },
     {
       title: 'Категории',
-      href: '',
-      items: [
-        { title: '111111111', href: '' },
-        { title: '222222222', href: '' },
-        { title: '33333333333', href: '' },
-        { title: '4444', href: '' },
-        { title: '5555555555555', href: '' },
-        { title: '1111111111', href: '' },
-        { title: '2222222222', href: '' },
-        { title: '333333333333', href: '' },
-        { title: '44444', href: '' },
-        { title: '55555555555555', href: '' }
-      ]
+      href: '/categories'
     },
     {
       title: 'Рейтинг',
