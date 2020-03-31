@@ -19,7 +19,6 @@ import Header from '../components/Header'
 import Search from '../components/Search'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'video-react/dist/video-react.css'
 
 const styles = {
   '@global': {

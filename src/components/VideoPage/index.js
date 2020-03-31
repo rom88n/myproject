@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import Head from 'next/head'
 import { compose } from 'redux'
-import { Player } from 'video-react'
 
 //graphql
 import { Query } from 'react-apollo'
@@ -51,9 +50,14 @@ const VideoPage = ({ classes, id }) => {
                   ? (
                     <Skeleton animation="wave" variant="rect" className={classes.player}/>
                   ) : (
-                    <Player>
-                      <source src={item.videoUrl} />
-                    </Player>
+                    <div>
+                      <iframe
+                        className={classes.iframe}
+                        src={item.videoUrl}
+                        allowfullscreen="false"
+                        autoplay="false"
+                      />
+                    </div>
                   )}
               </div>
               <div className="col-sm-12 col-md-12 col-lg-4"/>
@@ -75,6 +79,15 @@ VideoPage.propTypes = {
 }
 
 const styles = {
+  '-webkit-full-page-media': {
+    backgroundColor: '#fff !important'
+  },
+  iframe: {
+    border: 'none',
+    height: '344px',
+    width: '100%',
+    margin: '.5rem'
+  },
   root: {},
   title: {
     margin: '1rem'
