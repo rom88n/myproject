@@ -4,9 +4,25 @@ import classNames from 'classnames'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
 import MuiLink from '@material-ui/core/Link'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles({
+  link: {
+    '&:hover': {
+      textDecoration: 'none',
+      color: 'unset'
+    }
+  }
+})
 
 const NextComposed = React.forwardRef((props, ref) => {
   const { as, href, prefetch, ...other } = props
+  const router = useRouter()
+
+  // const handleClick = (event) => {
+  //   router.push(href)
+  //   event.preventDefault()
+  // }
 
   return (
     <NextLink href={href} prefetch={prefetch} as={as}>
@@ -31,8 +47,9 @@ function Link(props) {
     ...other
   } = props
   const router = useRouter()
+  const classes = useStyles()
 
-  const className = classNames(classNameProps, {
+  const className = classNames(classes.link, classNameProps, {
     [activeClassName]: router.pathname === props.href && activeClassName,
   })
 

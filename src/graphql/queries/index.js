@@ -1,8 +1,8 @@
-import gql from "graphql-tag"
+import gql from 'graphql-tag'
 
 export const allPosts = gql`
       query {
-        allPosts {
+        allPosts(orderBy: "createdAt_DESC") {
           id
           title
           videoUrl
@@ -10,22 +10,22 @@ export const allPosts = gql`
           preview
           hd
         }
-      }`
-
-
-export const postById = (id) => {
-  return gql`
-      query {
-         Post(where: { id: "${id}" }) {
-          id
-          title
-          videoUrl
-          image
-          preview
-          categories {
-            title
-          }
-        }
       }
-    `
+`
+
+export const postById = gql`
+query getPost($id: ID! ) {  
+  Post( where: { id: $id } ) {
+      id
+      title
+      videoUrl
+      image
+      preview
+      hd
+      categories {
+        title
+        url
+      }
+  }
 }
+`

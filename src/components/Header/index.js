@@ -3,10 +3,14 @@ import React from 'react'
 
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
 
 // components
 import DesktopMenu from './DesktopMenu'
 import MobileDrawer from './MobileDrawer'
+
+// components
+import Link from '../Link'
 
 const useStyles = makeStyles({
   root: {
@@ -17,6 +21,13 @@ const useStyles = makeStyles({
     borderTopRightRadius: '4px',
     borderTopLEftRadius: '4px',
     padding: '0 1rem'
+  },
+  text: {
+    color: '#000000bf',
+    '&:hover': {
+      color: '#00000096',
+      textDecoration: 'none'
+    }
   }
 })
 
@@ -25,30 +36,26 @@ export default function Header() {
 
   const menuItems = [
     {
-      title: 'Главная',
+      title: 'Videos',
       href: '/'
     },
     {
-      title: 'Категории',
+      title: 'Categories',
       href: '/categories'
     },
     {
-      title: 'Рейтинг',
+      title: 'Top Rating',
       href: ''
     },
     {
-      title: 'Регистрация',
-      href: ''
-    },
-    {
-      title: 'Вход',
+      title: 'About us',
       href: ''
     }
   ]
 
   return (
     <div className={classes.root}>
-      <div>HDKino</div>
+      <div><Typography component={Link} href="/" variant="button" className={classes.text}>HDKino</Typography></div>
       <div>
         <DesktopMenu data={menuItems}/>
         <MobileDrawer data={menuItems}/>

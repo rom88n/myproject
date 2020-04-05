@@ -4,7 +4,7 @@ const { byTracking, atTracking } = require('@keystonejs/list-plugins');
 const Category = {
   fields: {
     title: { type: Text },
-    hashTag: { type: Text },
+    url: { type: Text },
   },
   plugins: [
     byTracking({}),

@@ -9,6 +9,7 @@ const Post = {
     preview: { type: Text },
     categories: { type: Relationship, ref: 'Category', many: true },
     hd: { type: Integer },
+    views: { type: Integer },
   },
   plugins: [
     byTracking({}),
