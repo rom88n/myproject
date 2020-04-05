@@ -1,4 +1,4 @@
-const { Text, Url, Relationship} = require('@keystonejs/fields')
+const { Text, Url, Relationship, Integer } = require('@keystonejs/fields')
 const { byTracking, atTracking } = require('@keystonejs/list-plugins');
 
 const Post = {
@@ -8,6 +8,7 @@ const Post = {
     image: { type: Text },
     preview: { type: Text },
     categories: { type: Relationship, ref: 'Category', many: true },
+    hd: { type: Integer },
   },
   plugins: [
     byTracking({}),

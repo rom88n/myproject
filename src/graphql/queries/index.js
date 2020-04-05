@@ -8,6 +8,7 @@ export const allPosts = gql`
           videoUrl
           image
           preview
+          hd
         }
       }`
 

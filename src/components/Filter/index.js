@@ -22,10 +22,7 @@ const useStyles = makeStyles({
     height: '30px'
   },
   formControl: {
-    margin: '1rem'
-  },
-  arrowContainer: {
-    marginRight: '20px'
+    margin: '1rem 1rem 1rem .5rem'
   },
   arrow: {
     marginRight: '10px',
@@ -51,7 +48,7 @@ export default function Filter() {
 
   return (
     <div className={classes.selectContainer}>
-      <div className={classes.arrowContainer}>
+      <div>
         <ArrowDownwardIcon
           className={classNames(classes.arrow, activeArrow===2 && classes.notActive)}
           onClick={()=> setActiveArrow(1)}

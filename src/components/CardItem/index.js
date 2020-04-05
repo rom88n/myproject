@@ -109,7 +109,7 @@ export default function MediaCard({ item }) {
               <RemoveRedEye className={classes.iconEye}/>
               <Typography component="div" variant="caption">777</Typography>
             </div>
-            <HD className={classes.iconHD}/>
+            {!!item.hd && (<HD className={classes.iconHD}/>)}
           </CardMedia>
         </CardActionArea>
         <CardContent>
