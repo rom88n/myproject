@@ -35,8 +35,26 @@ const useStyles = makeStyles({
       color: 'inherit',
       textDecoration: 'none'
     }
+  },
+  link: {
+    whiteSpace: 'nowrap',
+    color: '#000000bf',
+    '&:hover': {
+      color: '#00000096',
+      textDecoration: 'none'
+    }
   }
 })
+
+const ListItemLink = React.forwardRef((props, ref) => (
+  <ListItem ref={ref} {...props}>
+    {props.children}
+  </ListItem>
+))
+
+ListItemLink.propTypes = {
+  children: PropTypes.any
+}
 
 function ListItemDropDown({ item, classes }) {
   const [state, setState] = React.useState({
@@ -61,7 +79,6 @@ function ListItemDropDown({ item, classes }) {
     return setState({ open: false, anchorEl: null })
   }
 
-
   const { open, anchorEl } = state
 
   return (
@@ -80,18 +97,22 @@ function ListItemDropDown({ item, classes }) {
             <Fade {...TransitionProps} timeout={350}>
               <Paper className={classes.dropdownList}>
                 <List disablePadding dense>
-                  {item.items.map(child => (
-                    <ListItem
-                      key={child.title}
-                      component={Link}
-                      href={`/${child.href}`}
-                      button
-                    >
-                      <ListItemText
-                        primary={child.title}
-                      />
-                    </ListItem>)
-                  )}
+                  {item.items.map(child => {
+                    const ref = React.createRef()
+                    return (
+                      <ListItemLink
+                        button
+                        ref={ref}
+                        component={Link}
+                        key={child.title}
+                        href={`/${child.href}`}
+                        className={classes.link}
+                      >
+                        <ListItemText
+                          primary={child.title}
+                        />
+                      </ListItemLink>)
+                  })}
                 </List>
               </Paper>
             </Fade>
@@ -115,12 +136,21 @@ export default function DesktopMenu({ data }) {
       <List classes={{ root: classes.list }} dense>
         {data.map((item) => {
           if (item.items) return (<ListItemDropDown classes={classes} item={item} key={item.title}/>)
+
+          const ref = React.createRef()
           return (
-            <ListItem key={item.title} component={Link} href={`${item.href}`} button>
+            <ListItemLink
+              button
+              ref={ref}
+              key={item.title}
+              component={Link}
+              href={item.href}
+              className={classes.link}
+            >
               <ListItemText
                 primary={item.title}
               />
-            </ListItem>)
+            </ListItemLink>)
         })}
       </List>
     </Hidden>
@@ -128,5 +158,5 @@ export default function DesktopMenu({ data }) {
 }
 
 DesktopMenu.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired
 }

@@ -1,6 +1,7 @@
 // base
 import React from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
@@ -54,7 +55,6 @@ const useStyles = makeStyles({
     right: 0,
     position: 'absolute',
     width: '2rem',
-    height: '2rem',
     margin: '0.5rem',
     color: 'orange'
   },
@@ -109,7 +109,7 @@ export default function MediaCard({ item }) {
               <RemoveRedEye className={classes.iconEye}/>
               <Typography component="div" variant="caption">777</Typography>
             </div>
-            {!!item.hd && (<HD className={classes.iconHD}/>)}
+            {!!item.hd && (<img src="./hd.png" className={classes.iconHD} alt={`${item.title} hd`}/>)}
           </CardMedia>
         </CardActionArea>
         <CardContent>
@@ -119,7 +119,9 @@ export default function MediaCard({ item }) {
         </CardContent>
         <div className={classes.dateContainer}>
           <div><DateRange className={classes.viewIcon}/></div>
-          <Typography component="div" variant="caption" className={classes.postDate}>2020-02-02</Typography>
+          <Typography component="div" variant="caption" className={classes.postDate}>
+            {moment(item.createdAt).format('Do-MMMM-YYYY')}
+          </Typography>
         </div>
       </Card>
     </div>
